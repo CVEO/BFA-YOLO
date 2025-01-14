@@ -8,6 +8,6 @@
 
 ## Training
 ```
-python train ultralytics/BFA-3D.yaml
+python train
 ```
 
