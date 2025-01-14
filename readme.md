@@ -8,6 +8,6 @@
 
 ## Training
 ```
-python train
+python train.py
 ```
 
