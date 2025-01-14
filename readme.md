@@ -1,5 +1,5 @@
 # BFA-YOLO: A balanced multiscale object detection network for building façade attachments detection
-[PDF]([https://arxiv.org/pdf/2309.15523.pdf](https://arxiv.org/abs/2409.04025v2))
+[PDF](https://arxiv.org/pdf/2309.15523.pdf)
 
 
 ## Data Preparation
