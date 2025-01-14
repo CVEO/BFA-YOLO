@@ -1,0 +1,46 @@
+
+# Parameters
+
+scales: # model compound scaling constants, i.e. 'model=XXXXXXXXXn.yaml' will call XXXXXXXXX.yaml with scale 'n'
+  # [depth, width, max_channels]
+  n: [0.33, 0.25, 1024]
+  s: [0.33, 0.50, 1024]  
+  m: [0.67, 0.75, 768]   
+  l: [1.00, 1.00, 512]   
+  x: [1.00, 1.25, 512]   
+
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, Conv, [64, 3, 2]]  # 0-P1/2
+  - [-1, 1, Conv, [128, 3, 2]]  # 1-P2/4
+  - [-1, 3, PMESA, [128, 'chunk', 8, True]]
+  - [-1, 1, Conv, [256, 3, 2]]  # 3-P3/8
+  - [-1, 6, PMESA, [256, 'chunk', 8, True]]
+  - [-1, 1, Conv, [512, 3, 2]]  # 5-P4/16
+  - [-1, 6, PMESA, [512, 'whole', 8, True]]
+  - [-1, 1, Conv, [1024, 3, 2]]  # 7-P5/32
+  - [-1, 3, PMESA, [1024, 'whole', 8, True]]
+  - [-1, 1, SPPF, [1024, 5]]  # 9
+
+head:
+  - [[9, 6, 4], 1, FBSM, []] # 10-P4/16
+
+  - [10, 1, Conv, [256, 3, 2]] # 11-P5/32
+  - [[-1, 9], 1, Concat, [1]]  
+  - [-1, 3, C2f, [512]]  # 13-P5/32
+
+  - [10, 1, nn.Upsample, [None, 2, 'nearest']] # 14-P3/8
+  - [[-1, 4], 1, Concat, [1]]  
+  - [-1, 3, C2f, [256]]  # 16-P3/8
+
+  - [[13, 10, 16], 1, FBSM, []] # 17-P4/16
+
+  - [17, 1, Conv, [256, 3, 2]] # 18-P5/32
+  - [[11, 18, 13], 1, Concat, [1]]  
+  - [-1, 3, C2f, [512]]  # 20-P5/32
+
+  - [17, 1, nn.Upsample, [None, 2, 'nearest']] # 21-P3/8
+  - [[14, 21, 16], 1, Concat, [1]]  
+  - [-1, 3, C2f, [256]]  # 23-P3/8
+
+  - [[15, 18, 21], 1, TDATH, [nc, 512]]  # Detect(P3, P4, P5)
