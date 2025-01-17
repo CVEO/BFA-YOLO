@@ -6,7 +6,7 @@ The detection of façade elements on buildings, such as doors, windows, balconie
 
 
 ## Model Structure
-![Structure Figure](figure/BFA-YOLO.png)
+![Structure Figure](igure/Fig_BFA-YOLO_Net.png)
 
 ## Data Preparation
 [Download](https://pan.baidu.com/s/1zahJm_F0exHppmRlAlpErQ?pwd=jj2b)
