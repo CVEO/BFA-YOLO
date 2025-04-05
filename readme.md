@@ -21,13 +21,13 @@ python train.py
 ## Publication
 If you want to use this work, please consider citing the following paper.
 ```
-@misc{chen2024bfayolobalancedmultiscaleobject,
-      title={BFA-YOLO: A balanced multiscale object detection network for building fa\c{c}ade attachments detection}, 
-      author={Yangguang Chen and Tong Wang and Guanzhou Chen and Kun Zhu and Xiaoliang Tan and Jiaqi Wang and Wenchao Guo and Qing Wang and Xiaolong Luo and Xiaodong Zhang},
-      year={2024},
-      eprint={2409.04025},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2409.04025}, 
+@article{chen2025bfa,
+  title={BFA-YOLO: A balanced multiscale object detection network for building fa{\c{c}}ade elements detection},
+  author={Chen, Yangguang and Wang, Tong and Chen, Guanzhou and Zhu, Kun and Tan, Xiaoliang and Wang, Jiaqi and Guo, Wenchao and Wang, Qing and Luo, Xiaolong and Zhang, Xiaodong},
+  journal={Advanced Engineering Informatics},
+  volume={65},
+  pages={103289},
+  year={2025},
+  publisher={Elsevier}
 }
 ```
